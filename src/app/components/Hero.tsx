@@ -35,7 +35,7 @@ const propertyOptions = [
   },
 ];
 
-const getIcon = (name: any) => {
+const getIcon = (name: string) => {
   switch (name) {
     case "Land":
       return <MapPin size={20} />;
@@ -80,6 +80,17 @@ export default function HeroSection() {
               data.address.city || data.address.town || "Unknown Location"
             );
           } catch (error) {
+            let errorMessage = "Invalid JSON format.";
+
+            // Narrowing down the error type
+            if (error instanceof Error) {
+              errorMessage += ` Error details: ${error.message}`;
+            } else if (typeof error === "string") {
+              errorMessage += ` Error details: ${error}`;
+            } else {
+              errorMessage += " An unknown error occurred.";
+            }
+            alert(errorMessage);
             setCurrentLocation("Location unavailable");
           }
         },

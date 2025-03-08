@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { FaGooglePlay, FaApple } from "react-icons/fa";
 
 const DownloadApp = () => {
@@ -7,10 +8,13 @@ const DownloadApp = () => {
     <div className="bg-[#f8f9fa] py-16 px-6 md:px-16 lg:px-32 flex flex-col md:flex-row items-center justify-between  mx-6 my-10 rounded-lg shadow-md">
       {/* Left: App Image */}
       <div className="md:w-1/2 flex justify-center mb-8 md:mb-0">
-        <img
-          src="/mobile.webp" // Replace with actual image path
+        <Image
+          src="/mobile.webp" // Ensure the image is in the public folder
           alt="Mobile App"
+          width={400} // Set a maximum width
+          height={300} // Adjust height accordingly
           className="w-80 md:w-[350px] lg:w-[400px]"
+          priority // Ensures faster loading
         />
       </div>
 

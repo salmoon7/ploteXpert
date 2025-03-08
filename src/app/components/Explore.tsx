@@ -1,10 +1,34 @@
 "use client";
-import { motion } from "framer-motion";
-import { MapPin } from "lucide-react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
+import dynamic from "next/dynamic";
 
-const cityData = [
+import { motion } from "framer-motion";
+// import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import { MapPin } from "lucide-react";
+
+type City = {
+  name: string;
+  properties: number;
+  coords: [number, number];
+};
+
+const MapContainer = dynamic(
+  () => import("react-leaflet").then((mod) => mod.MapContainer),
+  { ssr: false }
+);
+const TileLayer = dynamic(
+  () => import("react-leaflet").then((mod) => mod.TileLayer),
+  { ssr: false }
+);
+const Marker = dynamic(
+  () => import("react-leaflet").then((mod) => mod.Marker),
+  { ssr: false }
+);
+const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), {
+  ssr: false,
+});
+
+const cityData: City[] = [
   { name: "Ikeja", properties: 120, coords: [6.6018, 3.3515] }, // Ikeja, Lagos
   { name: "Lekki", properties: 85, coords: [6.4654, 3.4064] }, // Lekki, Lagos
   { name: "Abeokuta", properties: 95, coords: [7.1505, 3.3466] }, // Abeokuta, Ogun
@@ -12,6 +36,7 @@ const cityData = [
 ];
 
 const ExploreCities = () => {
+  const cityCenter: [number, number] = cityData[0].coords;
   return (
     <div className="bg-[#f8f9fa] py-16 px-6 md:px-16 lg:px-32">
       <h2
@@ -30,7 +55,7 @@ const ExploreCities = () => {
             style={{ fontFamily: "Poppins, sans-serif" }}
           >
             {/* City Name & Property Count */}
-            <div className="absolute top-4 left-4 bg-white px-4 py-2 rounded-xl shadow-md flex items-center gap-2">
+            <div className="absolute top-10 left-10 bg-white px-4 py-2 rounded-xl shadow-md flex items-center gap-2">
               <MapPin size={18} className="text-[#002147]" />
               <div>
                 <h3 className="text-lg font-semibold text-[#002147]">
@@ -44,7 +69,7 @@ const ExploreCities = () => {
 
             {/* Leaflet Map */}
             <MapContainer
-              center={city.coords}
+              center={cityCenter}
               zoom={13}
               style={{ height: "200px", width: "100%" }}
             >

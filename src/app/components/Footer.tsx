@@ -12,7 +12,7 @@ export default function Footer() {
           <div className="md:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Column 1 - Contact Info */}
             <div>
-              <h3 className="font-semibold text-lg mb-3">Let's Talk</h3>
+              <h3 className="font-semibold text-lg mb-3">Let&apos;s Talk</h3>
               <p className="text-sm">info@plotxpert.com</p>
               <p className="text-sm">1234 Real Estate Ave, Lagos</p>
               <p className="text-sm">+234 801 234 5678</p>

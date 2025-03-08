@@ -1,10 +1,9 @@
 "use client";
-import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Lock, Mail, User } from "lucide-react";
+import { Lock, Mail } from "lucide-react";
 
 const Login = () => {
   return (
@@ -31,7 +30,7 @@ const Login = () => {
           </Button>
         </div>
         <p className="text-center text-sm text-gray-600 mt-4">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link href="/signup" className="primary">
             Sign Up
           </Link>
